@@ -1,651 +1,102 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Samuel Joseph &mdash; Profile website</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- <meta name="description" content="Free HTML5 Website Template by freehtml5.co" />
-	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
-	<meta name="author" content="freehtml5.co" /> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Registration</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+    <header>
+        <h2 class = "logo">logo</h2>
+        <nav class="navigation">
+            <button class="btnLogin-popup">Sign Up</button>
+        </nav>
+    </header>
 
-  	<!-- Facebook and Twitter integration -->
-	<meta property="og:title" content=""/>
-	<meta property="og:image" content=""/>
-	<meta property="og:url" content=""/>
-	<meta property="og:site_name" content=""/>
-	<meta property="og:description" content=""/>
-	<meta name="twitter:title" content="" />
-	<meta name="twitter:image" content="" />
-	<meta name="twitter:url" content="" />
-	<meta name="twitter:card" content="" />
+    <div class="wrapper" style="height: 70%;">
+        <span class="icon-close"><ion-icon name="close"></ion-icon></span>
+        <div class="form-box login" id="successForm">
+            <h2>Sign Up</h2>
+            <form action="#">
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="person"></ion-icon>
+                        <i id="nameErrorIcon"></i>
+                    </span>
+                    <input type="text" required id="nameInput" maxlength="30">
+                    <label>Username<ion-icon name=""></ion-icon></label>
+                    <center><small style="color: red; font-size: 11px;" id="nameError"></small></center>
+                </div>
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="mail"></ion-icon>
+                        <i id="emailErrorIcon"></i>
+                    </span>
+                    <input type="text" required id="emailInput">
+                    <label>Email<ion-icon name=""></ion-icon></label>
+                    <center><small style="color: red; font-size: 11px;" id="emailError"></small></center>
+                </div>
+                <div class="input-box">
+                    <span class="icon">
+                        <i id="dateErrorIcon"></i>
+                    </span>
+                    <input type="Date" required id="dateInput">
+                    <center><small style="color: red; font-size: 11px;" id="dateError"></small></center>
+                </div>
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="call"></ion-icon>
+                        <i id="mobileErrorIcon"></i>
+                    </span>
+                    <input type="text" id="mobileNumber" required oninput="validateMobileNumber(this.value)">
+                    <label>Mobile Number</label>
+                    <center><small id="mobileError" style="color: red; font-size: 11px;"></small></center>
+                </div>
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="lock-closed"></ion-icon>
+                        <i id="passwordErrorIcon"></i>
+                    </span>
+                    <input type="password" id="password" required oninput="validatePassword()">
+                    <label>Password</label>
+                    <center><small id="passwordError" style="color: red; font-size: 11px;"></small></center>
+                        <!-- <center><small style="color: red; font-size: 11px;" id="lowercaseError"></small></center>
+                        <center><small style="color: red; font-size: 11px;" id="uppercaseError"></small></center>
+                        <center><small style="color: red; font-size: 11px;" id="specialCharError"></small></center>
+                        <center><small style="color: red; font-size: 11px;" id="lengthError"></small></center> -->
+                </div>                
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="lock-closed"></ion-icon>
+                        <i id="confirmPasswordErrorIcon"></i>
+                    </span>
+                    <input type="password" required id="confirmPassword" oninput="validateConfirmPassword()">
+                    <label>Confirm Password<ion-icon name=""></ion-icon></label>
+                    <center><small id="confirmPasswordError" style="color: red; font-size: 11px;"></small></center>
+                </div>
+                <div  id="submitButton"><button type="submit" class="btn" onclick="validateForm()">Register</button></div>
+            </form>
+        </div>
+    
+    </div>
 
-	<link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
-	
-	<!-- Animate.css -->
-	<link rel="stylesheet" href="css/animate.css">
-	<!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" href="css/icomoon.css">
-	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="css/bootstrap.css">
+    <!-- <div class="wrapper" style="height: 70%;">
+        <span class="icon-close"><ion-icon name="close"></ion-icon></span>
+        <div class="form-box login">
+            <h2>Sign Up</h2>
+        </div>
 
-	<!-- Theme style  -->
-	<link rel="stylesheet" href="css/style.css">
+    </div> -->
 
-	<!-- Modernizr JS -->
-	<script src="js/modernizr-2.6.2.min.js"></script>
-	<!-- FOR IE9 below -->
-	<!--[if lt IE 9]>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
-
-	</head>
-	<body>
-		
-	<div class="fh5co-loader"></div>
-	
-	<div id="page">	
-	<header id="fh5co-header" class="fh5co-cover js-fullheight" role="banner" style="background-image:url(images/cover_bg_3.jpg);" data-stellar-background-ratio="0.5">
-		<div class="overlay"></div>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2 text-center">
-					<div class="display-t js-fullheight">
-						<div class="display-tc js-fullheight animate-box" data-animate-effect="fadeIn">
-							<div class="profile-thumb" style="background: url(images/profile-image.jpg);"></div>
-							<h1><span>Samuel Joseph</span></h1>
-							<h3><span>Fullstack Developer / Python developer / Musician</span></h3>
-							<p>
-								<ul class="fh5co-social-icons">
-									<li><a href="https://api.whatsapp.com/send?phone=7907429615"><i class="icon-whatsapp"></i></a></li>
-									<li><a href="https://www.instagram.com/samuel_c40/"><i class="icon-instagram2"></i></a></li>
-									<li><a href="https://www.linkedin.com/in/samuel-joseph-625801240/"><i class="icon-linkedin2"></i></a></li>
-									<li><a href="https://github.com/samuelc40?tab=repositories"><i class="icon-github"></i></a></li>
-									<li><a href="https://samuelc40.github.io/Music-Profilio/"><i class="icon-dribbble2"></i></a></li>
-								</ul>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</header>
-
-	<div id="fh5co-about" class="animate-box">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>About Me</h2>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-4">
-					<ul class="info">
-						<li><span class="first-block">Full Name:</span><span class="second-block">Samuel Joseph</span></li>
-						<li><span class="first-block">Phone:</span><span class="second-block">+91 7907429615</span></li>
-						<li><span class="first-block">Email:</span><span class="second-block">samueljoseph2k19@gmail.com</span></li>
-						<!-- <li><span class="first-block">Website:</span><span class="second-block">www.yoursite.com</span></li> -->
-						<li><span class="first-block">Address:</span><span class="second-block">Paliyath House, Karshaka Road, kochi, M.G Road, 682016</span></li>
-					</ul>
-				</div>
-				<div class="col-md-8">
-					<h2>Hello There!</h2>
-					<p>Im a self learned full stack developer who currently working as freelancer(remote) and i'm seeking an opportunity to work as a python developer intern or full stack developer intern to experience the projects and challenges in a real industry for the betterment of my knowledge and the experience. <br> I'm actually not a complete beginner, I have experience in working in the official projects of Organisations and Businesses deployed in different deployment platforms.</p>
-					<p>I am a BSc Mathematics and computer fundamentals degree graduate, I have worked several other fields after my graduation and along with that i learned coding by my self watching youtube channels (Especially BroToType, Telusko, Amulya's Academy) and with the help of AI Tools. I have covered almost to the intermediate level of the Full stack Web development using Html 5\ CSS and Javascript as Front end and the Python django framework as the Backend. </p>
-					<p>
-						<ul class="fh5co-social-icons">
-							<li><a href="https://api.whatsapp.com/send?phone=7907429615"><i class="icon-whatsapp"></i></a></li>
-									<li><a href="https://www.instagram.com/samuel_c40/"><i class="icon-instagram2"></i></a></li>
-									<li><a href="https://www.linkedin.com/in/samuel-joseph-625801240/"><i class="icon-linkedin2"></i></a></li>
-									<li><a href="https://github.com/samuelc40?tab=repositories"><i class="icon-github"></i></a></li>
-									<li><a href="https://samuelc40.github.io/Music-Profilio/"><i class="icon-dribbble2"></i></a></li>
-						</ul>
-					</p>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div id="fh5co-resume" class="fh5co-bg-color">
-		<div class="container">
-			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>My Resume</h2>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12 col-md-offset-0">
-					<ul class="timeline">
-						<li class="timeline-heading text-center animate-box">
-							<div><h3>Work Experience</h3></div>
-						</li>
-						<li class="animate-box timeline-unverted">
-							<div class="timeline-badge"><i class="icon-suitcase"></i></div>
-							<div class="timeline-panel">
-								<div class="timeline-heading">
-									<h3 class="timeline-title">Fullstack Developer</h3>
-									<span class="company">Freelancer - Current</span>
-								</div>
-								<div class="timeline-body">
-									<p>Currently I have started working as a freelancer from home developing websites (Using HTML5\CSS and Javascript), Webapplications (Using Python Django framework as the Backend)</p>
-								</div>
-							</div>
-						</li>
-						<li class="timeline-inverted animate-box">
-							<div class="timeline-badge"><i class="icon-suitcase"></i></div>
-							<div class="timeline-panel">
-								<div class="timeline-heading">
-									<h3 class="timeline-title">Internship</h3>
-									<span class="company">BroToType - 2022</span>
-								</div>
-								<div class="timeline-body">
-									<p>I was an intern at the BroToType Coding Academy and I had to quit it due to some financial issue; i learned coding skills started with the OOPs concepts of the programming with examples using Java, pattern and Array printing in different methods and logics using loops in C.</p>
-								</div>
-							</div>
-						</li>
-						<!-- <li class="animate-box timeline-unverted">
-							<div class="timeline-badge"><i class="icon-suitcase"></i></div>
-							<div class="timeline-panel">
-								<div class="timeline-heading">
-									<h3 class="timeline-title">UI/UX Designer</h3>
-									<span class="company">Company Name - 2010 - 2012</span>
-								</div>
-								<div class="timeline-body">
-									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-								</div>
-							</div>
-						</li> -->
-
-						<br>
-						<li class="timeline-heading text-center animate-box">
-							<div><h3>Education</h3></div>
-						</li>
-						<!-- <li class="timeline-inverted animate-box">
-							<div class="timeline-badge"><i class="icon-graduation-cap"></i></div>
-							<div class="timeline-panel">
-								<div class="timeline-heading">
-									<h3 class="timeline-title">Masters Degree</h3>
-									<span class="company">University Name - 2007 - 2009</span>
-								</div>
-								<div class="timeline-body">
-									<p>Far far away, behind the word mountains, they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-								</div>
-							</div>
-						</li> -->
-						<li class="animate-box timeline-unverted">
-							<div class="timeline-badge"><i class="icon-graduation-cap"></i></div>
-							<div class="timeline-panel">
-								<div class="timeline-heading">
-									<h3 class="timeline-title">Bachelors Degree</h3>
-									<span class="company">M.G University - 2019 to 2022 </span>
-								</div>
-								<div class="timeline-body">
-									<p>I am a BSc Mathematics and computer fundamentals degree graduate at The Cochin College (A college under the M.G University) in 2019 to 2022 batch.</p>
-								</div>
-							</div>
-						</li>
-						<li class="timeline-inverted animate-box">
-							<div class="timeline-badge"><i class="icon-graduation-cap"></i></div>
-							<div class="timeline-panel">
-								<div class="timeline-heading">
-									<h3 class="timeline-title">Higher Secondary</h3>
-									<span class="company">S.R.V Public School - 2017 to 2019</span>
-								</div>
-								<div class="timeline-body">
-									<p>I have completed my Higher Secondary education in Computer science at the S.R.V school which is a state cyllabus school.</p>
-								</div>
-							</div>
-						</li>
-						<!-- <li class="animate-box timeline-unverted">
-							<div class="timeline-badge"><i class="icon-graduation-cap"></i></div>
-							<div class="timeline-panel">
-								<div class="timeline-heading">
-									<h3 class="timeline-title">Graduation</h3>
-									<span class="company">College Name - 1994 - 1998</span>
-								</div>
-								<div class="timeline-body">
-									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-								</div>
-							</div>
-						</li> -->
-			    	</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-
-	<div id="fh5co-features" class="animate-box">
-		<div class="container">
-			<div class="services-padding">
-				<div class="row">
-					<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-						<h2>My Services</h2>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-4 text-center">
-						<div class="feature-left">
-							<span class="icon">
-								<i class="icon-paintbrush"></i>
-							</span>
-							<div class="feature-copy">
-								<h3>Web Designing</h3>
-								<p>Designing website templates using designing tools like Figma and Nicepage</p>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-md-4 text-center">
-						<div class="feature-left">
-							<span class="icon">
-								<i class="icon-genius"></i>
-							</span>
-							<div class="feature-copy">
-								<h3>Frontend development</h3>
-								<p>Developing attractive and responsive websites with user friendly interface using HTML5\CSS and Javascript </p>
-							</div>
-						</div>
-
-					</div>
-					<div class="col-md-4 text-center">
-						<div class="feature-left">
-							<span class="icon">
-								<i class="icon-bargraph"></i>
-							</span>
-							<div class="feature-copy">
-								<h3>Backend development</h3>
-								<p>Developing Backend part of different types of web applications Using Python Django and sqlite, Postgres databases.</p>
-							</div>
-						</div>
-					</div>
-				</div>
-
-
-				<!-- <div class="row">
-					<div class="col-md-4 text-center">
-
-						<div class="feature-left">
-							<span class="icon">
-								<i class="icon-bargraph"></i>
-							</span>
-							<div class="feature-copy">
-								<h3>Web Developent</h3>
-								<p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit.</p>
-							</div>
-						</div>
-
-					</div>
-
-					<div class="col-md-4 text-center">
-						<div class="feature-left">
-							<span class="icon">
-								<i class="icon-briefcase"></i>
-							</span>
-							<div class="feature-copy">
-								<h3>Branding</h3>
-								<p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit.</p>
-							</div>
-						</div>
-
-					</div>
-					<div class="col-md-4 text-center">
-						<div class="feature-left">
-							<span class="icon">
-								<i class="icon-chat"></i>
-							</span>
-							<div class="feature-copy">
-								<h3>Support</h3>
-								<p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit.</p>
-							</div>
-						</div>
-					</div>
-				</div> -->
-			</div>
-		</div>
-	</div>
-
-	<!-- <div id="fh5co-skills" class="animate-box">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>Skills</h2>
-				</div>
-			</div>
-			<div class="row row-pb-md">
-				<div class="col-md-3 col-sm-6 col-xs-12 text-center">
-					<div class="chart" data-percent="95"><span><strong>HTML5</strong>95%</span></div>
-				</div>
-				<div class="col-md-3 col-sm-6 col-xs-12 text-center">
-					<div class="chart" data-percent="93"><span><strong>CSS3</strong>93%</span></div>
-				</div>
-				<div class="col-md-3 col-sm-6 col-xs-12 text-center">
-					<div class="chart" data-percent="90"><span><strong>jQuery</strong>90%</span></div>
-				</div>
-
-				<div class="col-md-3 col-sm-6 col-xs-12 text-center">
-					<div class="chart" data-percent="89"><span><strong>PHP</strong>89%</span></div>
-				</div>
-				<div class="col-md-3 col-sm-6 col-xs-12 text-center">
-					<div class="chart" data-percent="85"><span><strong>MySQL</strong>85%</span></div>
-				</div>
-				<div class="col-md-3 col-sm-6 col-xs-12 text-center">
-					<div class="chart" data-percent="90"><span><strong>AngularJS</strong>90%</span></div>
-				</div>
-				<div class="col-md-3 col-sm-6 col-xs-12 text-center">
-					<div class="chart" data-percent="85"><span><strong>Ruby</strong>85%</span></div>
-				</div>
-				<div class="col-md-3 col-sm-6 col-xs-12 text-center">
-					<div class="chart" data-percent="90"><span><strong>Java</strong>90%</span></div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6">
-					<div class="progress-wrap">
-						<h3><span class="name-left">HTML5/CSS3</span><span class="value-right">95%</span></h3>
-						<div class="progress">
-						  <div class="progress-bar progress-bar-1 progress-bar-striped active" role="progressbar"
-						  aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width:90%">
-						  </div>
-						</div>
-					</div>
-					<div class="progress-wrap">
-						<h3><span class="name-left">WordPress</span><span class="value-right">90%</span></h3>
-						<div class="progress">
-						  <div class="progress-bar progress-bar-2 progress-bar-striped active" role="progressbar"
-						  aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width:90%">
-						  </div>
-						</div>
-					</div>
-					<div class="progress-wrap">
-						<h3><span class="name-left">PHP</span><span class="value-right">80%</span></h3>
-						<div class="progress">
-						  <div class="progress-bar progress-bar-3 progress-bar-striped active" role="progressbar"
-						  aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:80%">
-						  </div>
-						</div>
-					</div>
-					<div class="progress-wrap">
-						<h3><span class="name-left">Java</span><span class="value-right">85%</span></h3>
-						<div class="progress">
-						  <div class="progress-bar progress-bar-4 progress-bar-striped active" role="progressbar"
-						  aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width:85%">
-						  </div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="progress-wrap">
-						<h3><span class="name-left">Design</span><span class="value-right">100%</span></h3>
-						<div class="progress">
-						  <div class="progress-bar progress-bar-5 progress-bar-striped active" role="progressbar"
-						  aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
-						  </div>
-						</div>
-					</div>
-					<div class="progress-wrap">
-						<h3><span class="name-left">Ruby</span><span class="value-right">70%</span></h3>
-						<div class="progress">
-						  <div class="progress-bar progress-bar-striped active" role="progressbar"
-						  aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
-						  </div>
-						</div>
-					</div>
-					<div class="progress-wrap">
-						<h3><span class="name-left">Python</span><span class="value-right">85%</span></h3>
-						<div class="progress">
-						  <div class="progress-bar progress-bar-1 progress-bar-striped active" role="progressbar"
-						  aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width:85%">
-						  </div>
-						</div>
-					</div>
-					<div class="progress-wrap">
-						<h3><span class="name-left">jQuery</span><span class="value-right">75%</span></h3>
-						<div class="progress">
-						  <div class="progress-bar progress-bar-3 progress-bar-striped active" role="progressbar"
-						  aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:75%">
-						  </div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> -->
-
-	<div id="fh5co-blog">
-		<div class="container">
-			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>Projects</h2>
-					<p>These are the Projects I have completed using django for the backend development and HTML5\CSS\Javascript as Front end.</p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-4">
-					<div class="fh5co-blog animate-box">
-						<a href="https://www.bornagainministrieskochi.org/" class="blog-bg" style="background-image: url(images/bornagain.png);"></a>
-						<div class="blog-text">
-							<span class="posted_on">Oct. 5th 2023</span>
-							<h3><a href="https://www.bornagainministrieskochi.org/">Born Again Ministries</a></h3>
-							<p>This is an official project of a church which i have done with all the requirements of the user. <br>This site is hosted in the Vercel with the custom domain name from Godaddy and it's Database is Postgres in the railway app. This site also has the seo mapping to navigate the site with related keywords easily in the google search results.</p>
-							<ul class="stuff">
-								<!-- <li><i class="icon-heart2"></i>249</li>
-								<li><i class="icon-eye2"></i>308</li> -->
-								<li><a href="https://www.bornagainministrieskochi.org/">Visit site<i class="icon-arrow-right22"></i></a></li>
-							</ul>
-						</div> 
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="fh5co-blog animate-box">
-						<a href="#" class="blog-bg" style="background-image: url(images/chatroom.png);"></a>
-						<div class="blog-text">
-							<span class="posted_on">Sep. 4th 2023</span>
-							<h3><a href="#">Chatroom - Live Chat with friends</a></h3>
-							<p>This project is actually an exciting site where you can chat with your friends in site live. <br> This site has the feature to prevend the site from reloading with the API calling technology using Javasript which makes the chat live to the reciever and sender. It also has many features like live request sending and accepting.  </p>
-							<ul class="stuff">
-								<li><a href="#">Visit site<i class="icon-arrow-right22"></i></a></li>
-							</ul>
-						</div> 
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="fh5co-blog animate-box">
-						<a href="#" class="blog-bg" style="background-image: url(images/socialapp.png);"></a>
-						<div class="blog-text">
-							<span class="posted_on">Aug. 11th 2023</span>
-							<h3><a href="#">InstaBook - Social Media app</a></h3>
-							<p>This is the model of a social media with almost all the features of a real social media application except some feature like commenting under the post and texting. <br> This site is built using Python django for the Backend development and Html\css\javascript for the Front end. You can create account in this site using the django form validation.  </p>
-							<ul class="stuff">
-								<li><a href="#">Visit site<i class="icon-arrow-right22"></i></a></li>
-							</ul>
-						</div> 
-					</div>
-				</div>
-				
-			</div>
-		</div>
-	</div>
-
-	<div id="fh5co-work" class="fh5co-bg-dark">
-		<div class="container">
-			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>Templates</h2>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-3 text-center col-padding animate-box">
-					<a href="https://samuelc40.github.io/Social-Media-Template/" class="work" style="background-image: url(images/socialtemplate.png);">
-						<div class="desc">
-							<h3>Social Media</h3>
-							<span>Theme changing and fontsize changing</span>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-3 text-center col-padding animate-box">
-					<a href="https://samuelc40.github.io/NETFLIX-clone-template/" class="work" style="background-image: url(images/netfilx.png);">
-						<div class="desc">
-							<h3>Netfilx</h3>
-							<span>Resposive Netflix clone template</span>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-3 text-center col-padding animate-box">
-					<a href="https://samuelc40.github.io/Apple/" class="work" style="background-image: url(images/apple.png);">
-						<div class="desc">
-							<h3>Apple site</h3>
-							<span>Clone of Official apple site 2022</span>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-3 text-center col-padding animate-box">
-					<a href="https://samuelc40.github.io/Parallax-Template/" class="work" style="background-image: url(images/parallax.png);">
-						<div class="desc">
-							<h3>Parallax site</h3>
-							<span>Exciting parallax scrolling template (Non responsive, recommented for big screens)</span>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-3 text-center col-padding animate-box">
-					<a href="https://samuelc40.github.io/Music-Profilio/" class="work" style="background-image: url(images/music.png);">
-						<div class="desc">
-							<h3>My Music website</h3>
-							<span>My personal responsive music website</span>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-3 text-center col-padding animate-box">
-					<a href="https://samuelc40.github.io/beautiful-login/" class="work" style="background-image: url(images/login.png);">
-						<div class="desc">
-							<h3>Beautiful SignUp Form</h3>
-							<span>Beautiful signUp and Login form ( Non responsive )</span>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-3 text-center col-padding animate-box">
-					<a href="https://samuelc40.github.io/iQOO/" class="work" style="background-image: url(images/iqoo.png);">
-						<div class="desc">
-							<h3>IQOO site</h3>
-							<span>Clone of Official IQOO site 2022 ( Non responsive )</span>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-3 text-center col-padding animate-box">
-					<a href="https://samuelc40.github.io/Lamborghini/" class="work" style="background-image: url(images/lambo.png);">
-						<div class="desc">
-							<h3>Lamborgini site</h3>
-							<span>Clone of Official site of Lamborgini 2022 ( Non responsive, recommented for big screens )</span>
-						</div>
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<!-- <div id="fh5co-started" class="fh5co-bg-dark">
-		<div class="overlay"></div>
-		<div class="container">
-			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>Hire Me!</h2>
-					<p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit. Eos cumque dicta adipisci architecto culpa amet.</p>
-					<p><a href="#" class="btn btn-default btn-lg">Contact Us</a></p>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div id="fh5co-consult">
-		<div class="video fh5co-video" style="background-image: url(images/cover_bg_1.jpg);">
-			<div class="overlay"></div>
-		</div>
-		<div class="choose animate-box">
-			<h2>Contact</h2>
-			<form action="#">
-				<div class="row form-group">
-					<div class="col-md-6">
-						<input type="text" id="fname" class="form-control" placeholder="Your firstname">
-					</div>
-				</div>
-				<div class="row form-group">
-					<div class="col-md-6">
-						<input type="text" id="lname" class="form-control" placeholder="Your lastname">
-					</div>
-				</div>
-
-				<div class="row form-group">
-					<div class="col-md-12">
-						<input type="text" id="email" class="form-control" placeholder="Your email address">
-					</div>
-				</div>
-
-				<div class="row form-group">
-					<div class="col-md-12">
-						<input type="text" id="subject" class="form-control" placeholder="Your subject of this message">
-					</div>
-				</div>
-
-				<div class="row form-group">
-					<div class="col-md-12">
-						<textarea name="message" id="message" cols="30" rows="10" class="form-control" placeholder="Say something about us"></textarea>
-					</div>
-				</div>
-				<div class="form-group">
-					<input type="submit" value="Send Message" class="btn btn-primary">
-				</div>
-
-			</form>	
-		</div>
-	</div> -->
-
-	<!-- <div id="map" class="fh5co-map"></div>
-	</div> -->
-	
-	<div id="fh5co-footer">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<center><p>&copy; 2023.All Rights Reserved. samuelC40</p></center>
-					<center><p>
-						<ul class="fh5co-social-icons">
-							<li><a href="https://api.whatsapp.com/send?phone=7907429615"><i class="icon-whatsapp"></i></a></li>
-							<li><a href="https://www.instagram.com/samuel_c40/"><i class="icon-instagram2"></i></a></li>
-							<li><a href="https://www.linkedin.com/in/samuel-joseph-625801240/"><i class="icon-linkedin2"></i></a></li>
-							<li><a href="https://github.com/samuelc40?tab=repositories"><i class="icon-github"></i></a></li>
-							<li><a href="https://samuelc40.github.io/Music-Profilio/"><i class="icon-dribbble2"></i></a></li>
-						</ul>
-					</p></center>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="gototop js-top">
-		<a href="#" class="js-gotop"><i class="icon-arrow-up22"></i></a>
-	</div>
-	
-	<!-- jQuery -->
-	<script src="js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script src="js/jquery.easing.1.3.js"></script>
-	<!-- Bootstrap -->
-	<script src="js/bootstrap.min.js"></script>
-	<!-- Waypoints -->
-	<script src="js/jquery.waypoints.min.js"></script>
-	<!-- Stellar Parallax -->
-	<script src="js/jquery.stellar.min.js"></script>
-	<!-- Easy PieChart -->
-	<script src="js/jquery.easypiechart.min.js"></script>
-	<!-- Google Map -->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCefOgb1ZWqYtj7raVSmN4PL2WkTrc-KyA&sensor=false"></script>
-	<script src="js/google_map.js"></script>
-	
-	<!-- Main -->
-	<script src="js/main.js"></script>
-
-	</body>
+    <script src="style.js"></script>
+    <script src="script.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></script> -->
+    
+</body>
 </html>
 
