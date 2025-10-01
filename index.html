@@ -40,6 +40,13 @@
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
+	<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+	<script>
+		// initialise with your public key
+		(function(){
+		emailjs.init("service_6iufczs");
+		})();
+	</script>
 
 	</head>
 	<body>
@@ -756,50 +763,49 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 	<div id="fh5co-consult">
-		<div class="video fh5co-video" style="background-image: url(images/cover_bg_1.jpg);">
+		<div class="video fh5co-video" style="background: url(images/cover-bg-dalle.jpg);">
 			<div class="overlay"></div>
 		</div>
 		<div class="choose animate-box">
-			<h2>Contact</h2>
-			<form action="#">
-				<div class="row form-group">
-					<div class="col-md-6">
-						<input type="text" id="fname" class="form-control" placeholder="Your firstname">
-					</div>
-				</div>
-				<div class="row form-group">
-					<div class="col-md-6">
-						<input type="text" id="lname" class="form-control" placeholder="Your lastname">
-					</div>
-				</div>
+			<h2>Contact Me</h2>
+			 <form id="contact-form" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
 
-				<div class="row form-group">
-					<div class="col-md-12">
-						<input type="text" id="email" class="form-control" placeholder="Your email address">
-					</div>
-				</div>
+              <div class="row gy-4">
 
-				<div class="row form-group">
-					<div class="col-md-12">
-						<input type="text" id="subject" class="form-control" placeholder="Your subject of this message">
-					</div>
-				</div>
+                <div class="col-md-6">
+                  <label for="name-field" class="pb-2">Your Name</label>
+                  <input type="text" name="name" id="name-field" class="form-control" required>
+                </div>
 
-				<div class="row form-group">
-					<div class="col-md-12">
-						<textarea name="message" id="message" cols="30" rows="10" class="form-control" placeholder="Say something about us"></textarea>
-					</div>
-				</div>
-				<div class="form-group">
-					<input type="submit" value="Send Message" class="btn btn-primary">
-				</div>
+                <div class="col-md-6">
+                  <label for="email" class="pb-2">Your Email</label>
+                  <input type="email" class="form-control" name="email" id="email" required>
+                </div>
 
-			</form>	
+                <div class="col-md-12">
+                  <label for="subject" class="pb-2">Subject</label>
+                  <input type="text" class="form-control" name="subject" id="subject" required>
+                </div>
+
+                <div class="col-md-12">
+                  <label for="message" class="pb-2">Message</label>
+                  <textarea class="form-control" name="message" rows="10" id="message" required></textarea>
+                </div>
+
+                <div class="col-md-12 text-center">
+                  <div class="loading" style="display:none;">Loading…</div>
+                  <div class="error-message" style="display:none;color:red;"></div>
+                  <div class="sent-message" style="display:none;color:green;">Your message has been sent. Thank you!</div>
+                  <button type="button" onclick="sendmail()" class="btn btn-primary mt-3">Send Message</button>
+                </div>
+
+              </div>
+            </form>
 		</div>
-	</div> -->
+	</div>
 
 	<!-- <div id="map" class="fh5co-map"></div>
 	</div> -->
@@ -826,6 +832,59 @@
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up22"></i></a>
 	</div>
+
+	 <script>
+		function sendmail() {
+		const name = document.getElementById("name-field").value.trim();
+		const email = document.getElementById("email").value.trim();
+		const subject = document.getElementById("subject").value.trim();
+		const message = document.getElementById("message").value.trim();
+
+		const errorBox = document.querySelector(".error-message");
+		const successBox = document.querySelector(".sent-message");
+		const loadingBox = document.querySelector(".loading");
+
+		errorBox.style.display = "none";
+		successBox.style.display = "none";
+		loadingBox.style.display = "none";
+
+		if (!name || !email || !subject || !message) {
+			errorBox.textContent = "⚠️ Please fill in all fields.";
+			errorBox.style.display = "block";
+			return;
+		}
+
+		const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		if (!emailPattern.test(email)) {
+			errorBox.textContent = "⚠️ Please enter a valid email address.";
+			errorBox.style.display = "block";
+			return;
+		}
+
+		loadingBox.style.display = "block";
+
+		// Make sure these keys match your EmailJS template variables:
+		const parms = {
+			from_name: name,
+			from_email: email,
+			subject: subject,
+			message: message
+		};
+
+		emailjs.send("service_nyooc4d","template_26ckonf",parms,"TvgBJXN7ZdkbsKIsu")
+			.then(() => {
+			loadingBox.style.display = "none";
+			successBox.style.display = "block";
+			document.getElementById("contact-form").reset();
+			})
+			.catch((err) => {
+			loadingBox.style.display = "none";
+			errorBox.textContent = "❌ Failed to send. Try again later.";
+			errorBox.style.display = "block";
+			console.error("EmailJS Error:", err);
+			});
+		}
+	</script>
 	
 	<!-- jQuery -->
 	<script src="js/jquery.min.js"></script>
